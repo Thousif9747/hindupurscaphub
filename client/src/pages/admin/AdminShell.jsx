@@ -1,6 +1,8 @@
+import { useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import {
   ArrowLeft,
+  HardDrive,
   Inbox,
   LayoutDashboard,
   LogOut,
@@ -9,6 +11,7 @@ import {
   Settings,
 } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
+import { subscribeMode } from '../../lib/api';
 
 const nav = [
   { to: '/admin', end: true, label: 'Overview', Icon: LayoutDashboard },
@@ -20,6 +23,9 @@ const nav = [
 export default function AdminShell({ children }) {
   const { logout, minOrderKg, token } = useApp();
   const navigate = useNavigate();
+  const [dataMode, setDataMode] = useState('');
+
+  useEffect(() => subscribeMode(setDataMode), []);
 
   const signOut = () => {
     logout();
@@ -42,6 +48,11 @@ export default function AdminShell({ children }) {
                 Admin dashboard • Min order {minOrderKg} kg
               </p>
             </div>
+            {dataMode === 'local' && (
+              <span className="ml-1 hidden items-center gap-1.5 rounded-full bg-amber-100 px-3 py-1.5 text-[10px] font-extrabold uppercase tracking-wide text-amber-800 ring-1 ring-amber-200 sm:flex dark:bg-amber-500/15 dark:text-amber-300 dark:ring-amber-500/30">
+                <HardDrive className="h-3.5 w-3.5" /> Offline - saved on this device
+              </span>
+            )}
           </div>
 
           <div className="flex items-center gap-2">
