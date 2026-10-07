@@ -40,7 +40,7 @@ const DEFAULT_SETTINGS = {
   shopName: 'Hindupur Scrap Hub',
   tagline: 'We buy your scrap at the best price',
   mapQuery: 'Hindupur, Andhra Pradesh',
-  email: 'hello@hindupurscraphub.in',
+  email: 'hello@hindupurscarphub.in',
   instagram: 'https://instagram.com/',
   facebook: 'https://facebook.com/',
 };
